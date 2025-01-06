@@ -1,5 +1,6 @@
-import Contador from "@/components/Contador.vue";
-import ListaDeTareas from "@/components/ListaDeTareas.vue";
+import Contador from "@/modules/contador/components/Contador.vue";
+import ListaDeTareas from "@/modules/listaDeTareas/components/ListaDeTareas.vue";
+import RegistrarVue from "@/modules/registro/views/RegistrarVue.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
@@ -14,6 +15,10 @@ const router = createRouter({
       path: "/taskList",
       name: "lista de tareas",
       component: ListaDeTareas,
+    },
+    {
+      path: "/register",
+      component: RegistrarVue,
     },
   ],
 });
