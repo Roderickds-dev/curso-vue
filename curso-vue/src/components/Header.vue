@@ -2,17 +2,22 @@
 
 <template>
   <div class="temp">
-    La temperatura actual es de: {{ datos.current.temperature_2m }}º
+    <p v-if="datos">
+      La temperatura actual es de:
+      {{ datos.current.temperature_2m }}
+      º
+    </p>
   </div>
 </template>
 <script setup>
 import { onMounted, ref } from "vue";
 
-const datos = ref([]);
+const datos = ref(null);
+
 const fetchTemp = async () => {
   try {
     const res = await fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=-34.6131&longitude=-58.3772&current=temperature_2m&hourly=temperature_2m&timezone=auto"
+      "https://api.open-meteo.com/v1/forecast?latitude=-34.6131&longitude=-58.3772&current=temperature_2m&timezone=auto"
     );
 
     if (!res.ok) {
@@ -20,7 +25,7 @@ const fetchTemp = async () => {
     }
     const json = await res.json();
     datos.value = json;
-    console.log(json.current.temperature_2m);
+    //console.log(json.current.temperature_2m);
   } catch (err) {
     console.log(err);
   }
